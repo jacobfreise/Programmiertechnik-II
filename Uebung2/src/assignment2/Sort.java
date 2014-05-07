@@ -59,7 +59,41 @@ public class Sort {
 		
 		return i;
 	}
+	
+	private static int findMax(int[] a){
+		int result = 0;
+		for (int i = 0; i < a.length; i++){
+			if (a[i] > result){
+				result = a[i];
+			}
+		}
+		return result;
+	}
 
 	public static void countingsort(int[] a) {
+		int max = findMax(a);
+		int[] adress = new int[max];
+		
+		for (int i = 0; i < adress.length; i++){
+			adress[i] = 0;
+		}
+		
+		for (int i = 0; i < a.length; i++){
+			adress[i] = adress[i] + 1;
+		}
+		
+		for (int i = 1; i < a.length; i++){
+			adress[i] += adress[i-1];
+		}
+		
+		int[] result = new int[a.length];
+		for (int i = 0; i < a.length; i++){
+			result[adress[a[i]]] = a[i];
+			adress[a[i]] = adress[a[i]] - 1;
+		}
+		
+		for (int i = 0; i < result.length; i++){
+			a[i] = result[i];
+		}
 	}
 }

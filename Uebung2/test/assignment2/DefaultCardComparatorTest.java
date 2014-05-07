@@ -1,6 +1,6 @@
 package assignment2;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -14,10 +14,10 @@ public class DefaultCardComparatorTest {
 		DefaultCardComparator comparator = new DefaultCardComparator();
 		Card card1 = new Card(Suit.Hearts, Rank.King);
 		Card card2 = new Card(Suit.Spades, Rank.Two);
-		assertEquals(comparator.compare(card1, card2), -1);
-		assertEquals(comparator.compare(card2, card1), 1);
+		assertTrue(comparator.compare(card1, card2) < 0);
+		assertTrue(comparator.compare(card2, card1) > 0);
 		Card card3 = new Card(Suit.Hearts, Rank.Ten);
-		assertEquals(comparator.compare(card3, card1), 0);
+		assertTrue(comparator.compare(card3, card1) == 0);
 	}
 
 }

@@ -28,11 +28,96 @@ public class Card {
 	}
 	
 	public static void bubblesort(Card[] a, Comparator<Card> c) {
+		boolean swapped = false;
+		for (int i = 0; i < a.length; i++){
+			swapped = false;
+			for (int j = 0; j < a.length-1; j++){
+				if (c.compare(a[j], a[j+1]) > 0){
+					swap(a, j, j+1);
+					swapped = true;
+				}
+			}
+			if (!swapped)
+				return;
+		}
+	}
+	
+	private static void swap(Card[] a, int j, int i) {
+		Card help = a[j];
+		a[j] = a[i];
+		a[i] = help;
+		
 	}
 	
 	public static void quicksort(Card[] a, Comparator<Card> c) {
+		quicksortHelp(a, 0, a.length-1, c);
+	}
+	
+	private static void quicksortHelp(Card[] a, int left, int right, Comparator<Card> c) {
+		if (left < right){
+			int pivot = divide(a, left, right, c);
+			quicksortHelp(a, left, pivot -1, c);
+			quicksortHelp(a, pivot+1, right, c);
+		}
+	}
+	
+	private static int divide(Card[] a, int left, int right, Comparator<Card> c) {
+		int i = left;
+		int j = right - 1;
+		Card pivot = a[right];
+		while (i < j){
+			while ((c.compare(a[i], pivot) <= 0) && (i < right)){
+				i++;
+			}
+			
+			while ((c.compare(a[j], pivot) >= 0) && (j > left)){
+				j--;
+			}
+			
+			if (i < j)
+				Card.swap(a, i, j);
+		}
+		if ((c.compare(a[i], pivot) > 0)){
+			Card.swap(a, i, right);
+		}
+		
+		return i;
 	}
 	
 	public static void countingsort(Card[] a) {
+		int max = findMax(a);
+		int[] adress = new int[max+1];
+		
+		for (int i = 0; i < adress.length; i++){
+			adress[i] = 0;
+		}
+		
+		for (int i = 0; i < a.length; i++){
+			adress[DefaultCardComparator.decipherValue(a[i])] = adress[DefaultCardComparator.decipherValue(a[i])] + 1;
+		}
+		
+		for (int i = 1; i <= max; i++){
+			adress[i] += adress[i-1];
+		}
+		
+		Card[] result = new Card[a.length];
+		for (int i = a.length - 1; i >= 0; i--){
+			result[adress[DefaultCardComparator.decipherValue(a[i])]-1] = a[i];
+			adress[DefaultCardComparator.decipherValue(a[i])] = adress[DefaultCardComparator.decipherValue(a[i])] - 1;
+		}
+		
+		for (int i = 0; i < result.length; i++){
+			a[i] = result[i];
+		}
+	}
+
+	private static int findMax(Card[] a) {
+		int result = 0;
+		for (int i = 0; i < a.length; i++){
+			if (DefaultCardComparator.decipherValue(a[i]) > result){
+				result = DefaultCardComparator.decipherValue(a[i]);
+			}
+		}
+		return result;
 	}
 }

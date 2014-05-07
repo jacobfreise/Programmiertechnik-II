@@ -79,15 +79,15 @@ public class Sort {
 		}
 		
 		for (int i = 0; i < a.length; i++){
-			adress[i] = adress[i] + 1;
+			adress[a[i]] = adress[a[i]] + 1;
 		}
 		
-		for (int i = 1; i < a.length; i++){
+		for (int i = 1; i < adress.length; i++){
 			adress[i] += adress[i-1];
 		}
 		
 		int[] result = new int[a.length];
-		for (int i = 0; i < a.length; i++){
+		for (int i = a.length - 1; i >= 0; i--){
 			result[adress[a[i]]] = a[i];
 			adress[a[i]] = adress[a[i]] - 1;
 		}

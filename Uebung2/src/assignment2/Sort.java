@@ -72,7 +72,7 @@ public class Sort {
 
 	public static void countingsort(int[] a) {
 		int max = findMax(a);
-		int[] adress = new int[max];
+		int[] adress = new int[max+1];
 		
 		for (int i = 0; i < adress.length; i++){
 			adress[i] = 0;
@@ -82,13 +82,13 @@ public class Sort {
 			adress[a[i]] = adress[a[i]] + 1;
 		}
 		
-		for (int i = 1; i < adress.length; i++){
+		for (int i = 1; i <= max; i++){
 			adress[i] += adress[i-1];
 		}
 		
 		int[] result = new int[a.length];
 		for (int i = a.length - 1; i >= 0; i--){
-			result[adress[a[i]]] = a[i];
+			result[adress[a[i]]-1] = a[i];
 			adress[a[i]] = adress[a[i]] - 1;
 		}
 		

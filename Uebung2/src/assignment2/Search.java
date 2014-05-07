@@ -22,7 +22,7 @@ public class Search {
 //		for (int i = 0; i < a.length; i++){
 //			if (x == a[i]){
 //				resultList.add(i);
-//			}
+//			} GIT SEARCH DEVELOP
 //			if (x < a[i]){
 //				break;
 //			}

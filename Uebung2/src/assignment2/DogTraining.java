@@ -16,7 +16,7 @@ public class DogTraining {
 		
 		int result = -1;
 		
-		for (int i = 0; i < k/2 - mod(k+1, 2); i++){
+		for (int i = 0; i < k/2 - ((k+1) % 2); i++){
 			if ((timePerNumber[i] != -1) && (timePerNumber[k-i] != -1)){
 				if (result == -1){
 					result = Math.max(timePerNumber[i], timePerNumber[k-i]);
@@ -29,10 +29,6 @@ public class DogTraining {
 		
 		
 		return result;
-	}
-	
-	private static int mod(int a, int b){
-		return a/b - (a/b * b);
 	}
 	
 	private static int findMinTime(int index, int length){

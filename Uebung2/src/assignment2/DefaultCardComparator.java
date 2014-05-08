@@ -9,19 +9,24 @@ public class DefaultCardComparator implements Comparator<Card> {
 	}
 	
 	public static int decipherValue(Card card){
+		/*
+		 * ich habe mich für 2 Switch-Case-Statements entschieden, anstatt die Funktion ordinal() zu verwenden, weil man dann nicht von der
+		 * Reihenfolge der Elemente in den Enums abhängig ist
+		 * die Farben und die Werte werden in Zahlen umgewandelt.
+		 */
 		int result = 0;
 		switch (card.getSuit()) {
 		case Clubs:
-			result = result + 100;
+			result = result + 12;
 			break;
 		case Diamonds:
-			result = result + 200;
+			result = result + 24;
 			break;
 		case Hearts:
-			result = result + 300;
+			result = result + 36;
 			break;
 		case Spades:
-			result = result + 400;
+			result = result + 48;
 			break;
 		default:
 			break;

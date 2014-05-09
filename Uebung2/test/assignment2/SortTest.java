@@ -15,13 +15,13 @@ public class SortTest {
 		assertArrayEquals(expected, actual);
 	}
 
-//	@Test
-//	public void testBubblesortBig() {
-//		int[] actual = util.readIntArrayResource("/assignment2/resources/big_array.txt");
-//		Sort.bubblesort(actual);
-//		int[] expected = util.readIntArrayResource("/assignment2/resources/big_array.sorted.txt");
-//		assertArrayEquals(expected, actual);
-//	}
+	@Test
+	public void testBubblesortBig() {
+		int[] actual = util.readIntArrayResource("/assignment2/resources/big_array.txt");
+		Sort.bubblesort(actual);
+		int[] expected = util.readIntArrayResource("/assignment2/resources/big_array.sorted.txt");
+		assertArrayEquals(expected, actual);
+	}
 
 	@Test
 	public void testQuicksort() {

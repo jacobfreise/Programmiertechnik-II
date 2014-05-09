@@ -1,0 +1,3 @@
+Die Sorted Variant benštigt in diesem Beispiel etwa ein Viertel der Zeit, im Durchschnitt etwa die HŠlfte der Zeit, im best-case nur einen Vergleich
+und im worst-case n Vergleiche (gleiche Zeit wie Unsorted)
+Unsorted muss immer den kompletten Array durchsuchen, benštigt demnach immer n Vergleiche.

@@ -1,0 +1,6 @@
+Quicksort ist der schnellste (0,5s), danach folgt Countingsort (1,2s) und als langsamster Bubblesort (~27 min) für dieses Beispiel mit dem großen Array.
+Quicksort ist sehr schnell (durchschnittlich O(n log(n)) und benˆtigt keinen wesentlichen zusätzlichen Speicherplatz, weil es in-place arbeitet.
+Allerdings hat der worst-case eine quadratische Komplexität.
+Countingsort hat eine Komplexität von O(n+k) und ist damit sehr schnell. Es benötigt jedoch viel zusätzlichen Speicherplatz, da mehrere Hilfsarrays erzeugt werden.
+Bubblesort hat im worst-case eine quadratische Komplexität und im best-case eine lineare Komplexität. Durchschnittlich brauch Bubblesort jedoch sehr viel länger
+als die anderen beiden, wie man in diesem Beispiel auch erkennen kann.

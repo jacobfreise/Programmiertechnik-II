@@ -1,0 +1,3 @@
+Countingsort kann nur angewendet werden, wenn der Wertebereich der zu sortierenden Elemente bekannt ist und auf Integer Werte
+abgebildet werden kann, um das Adressarray zu erzeugen. Will man bspw. Strings unbekannter Länge alphabetisch sortieren,
+ist Countingsort nicht anwendbar.

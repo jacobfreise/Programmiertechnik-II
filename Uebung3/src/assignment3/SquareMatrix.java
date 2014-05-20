@@ -125,7 +125,7 @@ public class SquareMatrix {
 		SquareMatrix result = newEmptyInstance();
 		for (int i = 0; i < size(); i++) {
 			for (int j = 0; j < size(); j++) {
-				result.set(i, j, alpha * get(j, i));
+				result.set(i, j, alpha * get(i, j));
 			}
 		}
 		return result;

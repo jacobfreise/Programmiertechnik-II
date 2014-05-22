@@ -58,6 +58,7 @@ public class SquareMatrixTest {
 			}
 		}
 		assertTrue(test);
+		System.out.println("Hallo Git");
 	}
 	
 	@Test

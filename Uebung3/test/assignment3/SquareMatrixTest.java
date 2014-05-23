@@ -12,11 +12,13 @@ public class SquareMatrixTest {
 	
 	SquareMatrix matrix1;
 	SquareMatrix matrix2;
+	SquareMatrix matrix3;
 	
 	@Before
 	public void setup(){
 		matrix1 = new SquareMatrix(4, InitStrategy.Plus);
 		matrix2 = new SquareMatrix(4, InitStrategy.Minus);
+		matrix3 = new SquareMatrix(5, InitStrategy.Random);
 		
 	}
 	
@@ -58,11 +60,18 @@ public class SquareMatrixTest {
 			}
 		}
 		assertTrue(test);
-		System.out.println("Hallo Git");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testMultiplyWithMatrixExc() {
+		
+		matrix1.multiply(matrix3);
 	}
 	
 	@Test
 	public void testMultiplyWithMatrix() {
+		SquareMatrix result = new SquareMatrix(4, InitStrategy.Zero);
+		
 	}
 	
 }

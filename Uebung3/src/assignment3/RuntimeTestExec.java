@@ -6,7 +6,7 @@ public class RuntimeTestExec {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] sizes = {1, 1, 1, 5, 10, 100, 500, 1000};
+		int[] sizes = {1, 1, 1, 5, 5, 5, 10, 10, 10, 50, 50, 50, 100, 100, 100, 500, 500, 500, 1000, 1000, 1000};
 		long[] maMultiTimes = new long[sizes.length];
 		long[] doMultiTimes = new long[sizes.length];
 		long[] minTimes = new long[sizes.length];

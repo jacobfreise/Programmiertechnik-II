@@ -46,7 +46,7 @@ public class RuntimeTestExec {
 		System.out.println("Matrixgroeße \t Sk.Multi \t M.Multi \t Minimum \t Maximum");
 		
 		for (int i = 0; i < sizes.length; i++){
-			System.out.println(sizes[i] + "\t\t" + maMultiTimes[i] + "\t\t" + doMultiTimes[i] + "\t\t" + minTimes[i] + "\t\t" + maxTimes[i]);
+			System.out.println(sizes[i] + "\t" + maMultiTimes[i] + "\t" + doMultiTimes[i] + "\t" + minTimes[i] + "\t" + maxTimes[i]);
 		}
 		
 	}

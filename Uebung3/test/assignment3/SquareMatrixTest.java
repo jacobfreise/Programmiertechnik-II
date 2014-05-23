@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.runners.statements.ExpectException;
-
 import assignment3.SquareMatrix.InitStrategy;
 
 public class SquareMatrixTest {
@@ -71,29 +69,30 @@ public class SquareMatrixTest {
 	public void testMultiplyWithMatrix() {
 		boolean answer = true;
 		SquareMatrix result = new SquareMatrix(4, InitStrategy.Zero);
-		result[0][0] = ;
-		result[0][1] = ;
-		result[0][2] = ;
-		result[0][3] = ;
-		result[1][0] = ;
-		result[1][1] = ;
-		result[1][2] = ;
-		result[1][3] = ;
-		result[2][0] = ;
-		result[2][1] = ;
-		result[2][2] = ;
-		result[2][3] = ;
-		result[3][0] = ;
-		result[3][1] = ;
-		result[3][2] = ;
-		result[3][3] = ;
+		result.set(0, 0,14);
+		result.set(0, 1,8);
+		result.set(0, 2,2);
+		result.set(0, 3,-4);
+		result.set(1, 0,20);
+		result.set(1, 1,10);
+		result.set(1, 2,0);
+		result.set(1, 3,-10);
+		result.set(2, 0,26);
+		result.set(2, 1,12);
+		result.set(2, 2,-2);
+		result.set(2, 3,-16);
+		result.set(3, 0,32);
+		result.set(3, 1,14);
+		result.set(3, 2,-4);
+		result.set(3, 3,-22);
 		
 		matrix1 = matrix1.multiply(matrix2);
 		
 		for (int i = 0; i < matrix1.size(); i++){
 			for (int j = 0; j < matrix1.size(); j++){
-				if (result[i][j] != matrix1.get(i, j)){
+				if (result.get(i, j) != matrix1.get(i, j)){
 					answer = false;
+					System.out.println(result.get(i, j) + " " + matrix1.get(i, j));
 				}
 			}
 		}

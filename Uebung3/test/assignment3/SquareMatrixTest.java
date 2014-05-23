@@ -64,14 +64,41 @@ public class SquareMatrixTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testMultiplyWithMatrixExc() {
-		
 		matrix1.multiply(matrix3);
 	}
 	
 	@Test
 	public void testMultiplyWithMatrix() {
+		boolean answer = true;
 		SquareMatrix result = new SquareMatrix(4, InitStrategy.Zero);
+		result[0][0] = ;
+		result[0][1] = ;
+		result[0][2] = ;
+		result[0][3] = ;
+		result[1][0] = ;
+		result[1][1] = ;
+		result[1][2] = ;
+		result[1][3] = ;
+		result[2][0] = ;
+		result[2][1] = ;
+		result[2][2] = ;
+		result[2][3] = ;
+		result[3][0] = ;
+		result[3][1] = ;
+		result[3][2] = ;
+		result[3][3] = ;
 		
+		matrix1 = matrix1.multiply(matrix2);
+		
+		for (int i = 0; i < matrix1.size(); i++){
+			for (int j = 0; j < matrix1.size(); j++){
+				if (result[i][j] != matrix1.get(i, j)){
+					answer = false;
+				}
+			}
+		}
+		
+		assertTrue(answer);
 	}
 	
 }

@@ -1,5 +1,9 @@
 package assignment4;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Random;
+
 
 public class SudokuSolver {
 	
@@ -54,8 +58,8 @@ public class SudokuSolver {
 	}
 	
 	private boolean square(SudokuBoard sudoku, int x, int y, int value){
-		for (int i = x- x%3; i < x-x%3 + 2; i++){
-			for (int j = y -y%3; j < y-y%3+2; j++){
+		for (int i = x- x%3; i < x-x%3 + 3; i++){
+			for (int j = y -y%3; j < y-y%3+3; j++){
 				if (sudoku.getCell(i, j) == value){
 					return false;
 				}
@@ -70,7 +74,12 @@ public class SudokuSolver {
 	 * @return the riddle
 	 */
 	public SudokuBoard createSudokuRiddle(int allocations){
-		//TODO
-		return null;
+		SudokuBoard result = new SudokuBoard();
+		Random r = new Random();
+		
+		for (int i = 1; i <= allocations; i++){
+			System.out.println(r.nextInt());
+		}
+		return result;
 	}
 }

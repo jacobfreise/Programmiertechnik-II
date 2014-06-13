@@ -40,8 +40,6 @@ public class SudokuSolverTest {
 
 		SudokuSolver solver = new SudokuSolver();
 		solver.solve(hardSudoku);
-		System.out.println(hardSudoku.toString());
-		System.out.println(solvedSudoku.toString());
 		assertEquals(hardSudoku.toString(), solvedSudoku.toString());
 	}
 	@Test

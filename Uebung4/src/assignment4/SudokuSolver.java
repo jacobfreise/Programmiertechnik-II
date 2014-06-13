@@ -30,14 +30,16 @@ public class SudokuSolver {
 				sudoku.setCell(i, row, col);
 				if (this.solve(sudoku)){
 					return true;
+				} else {
+					sudoku.removeValue(row, col);
 				}
-//					sudoku = back.copy();
-					
 			}
 		}
-		sudoku.removeValue(row, col);
+//		sudoku.removeValue(row, col);
 		return false;
 	}
+	
+	
 	
 //	private boolean possible(SudokuBoard sudoku) {
 //		for

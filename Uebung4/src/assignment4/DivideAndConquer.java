@@ -3,11 +3,17 @@ package assignment4;
 import java.util.ArrayList;
 
 public class DivideAndConquer {
+	
 	public static void filesort(String inputFile, String outputFile, int maxLineCount) {
 		//TODO 
 	}
+	
 	public static <X extends Comparable<X>> void mergesort(ArrayList<X> list) {
-		list = mergesortHelp(list);
+		ArrayList<X> helpList = mergesortHelp(list);
+		list.clear();
+		for (int i = 0; i < helpList.size(); i++){
+			list.add(helpList.get(i));
+		}
 	}
 	
 	public static <X extends Comparable<X>> ArrayList<X> mergesortHelp(ArrayList<X> list){

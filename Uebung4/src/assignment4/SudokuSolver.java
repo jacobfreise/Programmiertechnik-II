@@ -1,7 +1,5 @@
 package assignment4;
 
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -15,8 +13,8 @@ public class SudokuSolver {
 	public boolean solve(SudokuBoard sudoku) {
 		int row = -1;
 		int col = -1;
-		for (int i = 0; i < 9; i++){
-			for (int j = 0; j < 9; j++){
+		for (int i = 8; i >= 0; i--){
+			for (int j = 8; j >= 0; j--){
 				if (!sudoku.isSet(i, j)){
 					row = i;
 					col = j;
@@ -26,12 +24,14 @@ public class SudokuSolver {
 		if (row == -1 && col == -1){
 			return true;
 		}
+		SudokuBoard back = sudoku.copy();
 		for (int i = 1; i <= 9; i++){
 			if (this.column(sudoku, row, col, i) && this.row(sudoku, row, col, i) && this.square(sudoku, row, col, i)){
 				sudoku.setCell(i, row, col);
-				if (solve(sudoku)){
+				if (this.solve(sudoku)){
 					return true;
 				} else {
+//					sudoku = back.copy();
 					sudoku.removeValue(row, col);
 				}
 			}
@@ -39,6 +39,10 @@ public class SudokuSolver {
 		return false;
 	}
 	
+//	private boolean possible(SudokuBoard sudoku) {
+//		for
+//	}
+
 	private boolean column(SudokuBoard sudoku, int x, int y, int value){
 		for (int i = 0; i < sudoku.size(); i++){
 			if (sudoku.getCell(x, i) == value) {
@@ -78,6 +82,7 @@ public class SudokuSolver {
 		Random r = new Random();
 		boolean works = false;
 		while (!works){
+			result = new SudokuBoard();
 			for (int i = 1; i <= allocations; i++){
 				int row = r.nextInt()%9;
 				if (row < 0)
@@ -86,8 +91,7 @@ public class SudokuSolver {
 				if (col < 0)
 					col = col*(-1);
 				int value = r.nextInt()%9;
-				if (value < 0)
-					value = value*(-1);
+				if (value < 0){value = value*(-1);}
 				value++;
 				result.setCell(value, row, col);
 			}

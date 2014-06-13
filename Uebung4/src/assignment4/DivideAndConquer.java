@@ -1,11 +1,16 @@
 package assignment4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.io.*;
+import java.nio.*;
+
 
 public class DivideAndConquer {
 	
 	public static void filesort(String inputFile, String outputFile, int maxLineCount) {
-		//TODO 
+		ArrayList<String> list = getAllLines(inputfile.getFileName);
+		mergesort(list);
 	}
 	
 	public static <X extends Comparable<X>> void mergesort(ArrayList<X> list) {

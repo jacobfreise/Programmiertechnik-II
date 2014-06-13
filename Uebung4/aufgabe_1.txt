@@ -1,0 +1,5 @@
+Der Tankstellenarray wird 1 mal komplett durchlaufen. Dabei werden immer entweder 2 oder 3 Zuweisungen und ein Vergleich gemacht.
+Dann werden noch ein Vergleich und mšglicherweise eine Zuweisung gemacht.
+Danach werden noch entweder 0 bis t.length Zuweisungen gemacht.
+Im Worst Case also 4*n + 1 Zuweisungen + n+1 Vergleiche.
+Lineare Laufzeit.

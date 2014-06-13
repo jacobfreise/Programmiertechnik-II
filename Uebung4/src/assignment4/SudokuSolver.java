@@ -24,7 +24,6 @@ public class SudokuSolver {
 		if (row == -1 && col == -1){
 			return true;
 		}
-		SudokuBoard back = sudoku.copy();
 		for (int i = 1; i <= 9; i++){
 			if (this.column(sudoku, row, col, i) && this.row(sudoku, row, col, i) && this.square(sudoku, row, col, i)){
 				sudoku.setCell(i, row, col);
@@ -35,15 +34,9 @@ public class SudokuSolver {
 				}
 			}
 		}
-//		sudoku.removeValue(row, col);
 		return false;
 	}
 	
-	
-	
-//	private boolean possible(SudokuBoard sudoku) {
-//		for
-//	}
 
 	private boolean column(SudokuBoard sudoku, int x, int y, int value){
 		for (int i = 0; i < sudoku.size(); i++){

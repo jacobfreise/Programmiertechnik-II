@@ -4,13 +4,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.*;
 import java.nio.*;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 public class DivideAndConquer {
 	
 	public static void filesort(String inputFile, String outputFile, int maxLineCount) {
-		ArrayList<String> list = getAllLines(inputfile.getFileName);
-		mergesort(list);
+		ArrayList<String> lines = new ArrayList<>();
+		Path path = FileSystems.getDefault().getPath("../../", inputFile);
+		Charset charset = Charset.forName("UTF-8");
+		try (BufferedReader in = Files.newBufferedReader(path, charset)){
+			String line;
+			while((line = in.readLine()) != null){
+				lines.add(line);
+			}
+			in.close();
+		} catch (IOException e) {
+			
+		}
+		mergesort(lines);
+		Path out = FileSystems.getDefault().getPath("../../", outputFile);
+		try (BufferedWriter write = Files.newBufferedWriter(out, charset)){
+			while (!lines.isEmpty()){
+				write.write(lines.get(0));
+				lines.remove(0);
+			}
+			write.close();
+		} catch (IOException e) {
+			
+		}
 	}
 	
 	public static <X extends Comparable<X>> void mergesort(ArrayList<X> list) {

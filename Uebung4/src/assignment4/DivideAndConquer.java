@@ -8,9 +8,6 @@ public class DivideAndConquer {
 	}
 	public static <X extends Comparable<X>> void mergesort(ArrayList<X> list) {
 		list = mergesortHelp(list);
-		for (int i = 0; i < list.size(); i++){
-			System.out.println(list.get(i));
-		}
 	}
 	
 	public static <X extends Comparable<X>> ArrayList<X> mergesortHelp(ArrayList<X> list){

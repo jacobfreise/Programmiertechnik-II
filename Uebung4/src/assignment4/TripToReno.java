@@ -30,8 +30,10 @@ public class TripToReno {
 	
 	public static int timeCompare(int kmhProf, int kmhBike, int d, int z, int[] t) {
 		int numberOfStops = getStops(d, z, t).length;
-		double timeProf = (z/kmhProf) + (numberOfStops*0.25);
-		double timeBike = z/kmhBike;
+		double kmhProfd = kmhProf;
+		double kmhBiked = kmhBike;
+		double timeProf = (z/kmhProfd) + (numberOfStops*0.25);
+		double timeBike = z/kmhBiked;
 		System.out.println(numberOfStops + " " + timeProf + " " + timeBike);
 		if (timeProf < timeBike)
 			return 1;

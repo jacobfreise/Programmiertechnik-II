@@ -76,9 +76,23 @@ public class SudokuSolver {
 	public SudokuBoard createSudokuRiddle(int allocations){
 		SudokuBoard result = new SudokuBoard();
 		Random r = new Random();
-		
-		for (int i = 1; i <= allocations; i++){
-			System.out.println(r.nextInt());
+		boolean works = false;
+		while (!works){
+			for (int i = 1; i <= allocations; i++){
+				int row = r.nextInt()%9;
+				if (row < 0)
+					row = row*(-1);
+				int col = r.nextInt()%9;
+				if (col < 0)
+					col = col*(-1);
+				int value = r.nextInt()%9;
+				if (value < 0)
+					value = value*(-1);
+				value++;
+				result.setCell(value, row, col);
+			}
+			SudokuBoard test = result.copy();
+			works = this.solve(test);
 		}
 		return result;
 	}

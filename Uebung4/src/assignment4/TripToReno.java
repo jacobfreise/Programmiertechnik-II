@@ -5,55 +5,38 @@ import java.util.ArrayList;
 public class TripToReno {
 
 	public static int[] getStops(int d, int z, int[] t) {
-		ArrayList<Integer> result = new ArrayList<Integer>();
-        int capacity = d;
-        int waycount = 0;
-        int count;
-        for(count=0;count<t.length-1;count++){
-            d=d-t[count];
-            if(d-t[count+1]<0){
-                result.add(count);
-                waycount+= capacity-d;
-                d= capacity;
-            }
-        }
-        count++;
-        if((z-waycount)>d){
-            result.add(count);
-        }
-        
-        //int[] result_final = new int[result.size()];
-        //result_final= result.toArray();
-        return ListToIntArray(result);
-        //return result.toArray();
-    }
-
-	public static int[] ListToIntArray(ArrayList<Integer> list) {
-        int[] array = new int[list.size()];
-        
-        for (int i = 0; i < array.length; i++)
-            array[i] = list.get(i).intValue();
-        
-        return array;
-    }
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		int fuel = d;
+		int dist = 0;
+		for (int i = 0; i < t.length; i++){
+			dist += t[i];
+			if (fuel < t[i]){
+				fuel = d - t[i];
+				list.add(i-1);
+			}
+			else {
+				fuel -= t[i];
+			}
+		}
+		if (fuel < z - dist){
+			list.add(t.length-1);
+		}
+		int[] result = new int[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			result[i] = list.get(i);
+		}
+		return result;
+	}
 	
 	public static int timeCompare(int kmhProf, int kmhBike, int d, int z, int[] t) {
-        int[] stops = getStops(d,z,t);
-        float timeProf = (float) z/kmhProf;
-        float timeBike = (float) z/kmhBike;
-		if(timeProf*60+stops.length*15 > timeBike*60){
-            return -1;
-        }
-        else{
-            if(timeProf*60+stops.length*15 < timeBike*60){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
+		int numberOfStops = getStops(d, z, t).length;
+		double timeProf = (z/kmhProf) + (numberOfStops*0.25);
+		double timeBike = z/kmhBike;
+		System.out.println(numberOfStops + " " + timeProf + " " + timeBike);
+		if (timeProf < timeBike)
+			return 1;
+		if (timeProf == timeBike)
+			return 0;
+		return -1;
 	}
-    
-    
-    
 }

@@ -29,7 +29,7 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 
 	@Override
 	public void enqueue(T element) {
-		if (nextLastItem >= storage.length -1 ) { //reached end of array
+		if (nextLastItem <= storage.length -1 ) { //reached end of array
 			storage[nextLastItem] = element;
 			nextLastItem++;
 			length++;

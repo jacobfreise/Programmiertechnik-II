@@ -49,6 +49,8 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 			if (length == 0) { //reset start positions
 				nextFirstItem = storage.length / 2;
 				nextLastItem = storage.length / 2 + 1;
+			} else {
+				nextFirstItem ++;
 			}
 		} else {
 			//TODO throw exception
@@ -58,7 +60,12 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 
 	@Override
 	public void push(T element) {
-		// TODO Auto-generated method stub
+		storage[nextFirstItem] = element;
+		if (nextFirstItem > 0) {
+			nextFirstItem--;
+		} else {
+			//TODO resize storage (need more space at the front)
+		}
 		
 	}
 

@@ -2,9 +2,7 @@ package assignment5;
 
 import java.util.Iterator;
 
-import assignment5.adt.List;
-import assignment5.adt.Queue;
-import assignment5.adt.Stack;
+import assignment5.adt.*;
 
 public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>, Queue<T> {
 

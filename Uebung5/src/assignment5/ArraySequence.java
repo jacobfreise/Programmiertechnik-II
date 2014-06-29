@@ -6,7 +6,7 @@ import assignment5.adt.*;
 
 public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>, Queue<T> {
 
-	private T storage[];
+	private T[] storage;
 	private int length;
 	private int nextFirstItem;
 	private int nextLastItem;
@@ -18,6 +18,18 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		length = 0;
 		nextFirstItem = storage.length / 2;
 		nextLastItem = storage.length / 2 + 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void resize(){
+		T[] newstorage = (T[]) new Object[storage.length+size];
+		int newNextFirstItem = 12;
+		for (int i = 0; i < storage.length; i++){
+			newstorage[i+newNextFirstItem] = storage[i];
+		}
+		nextFirstItem = 11;
+		nextLastItem += 12;
+		storage = newstorage;
 	}
 
 	@Override
@@ -32,14 +44,16 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 			nextLastItem++;
 			length++;
 		} else {
-			//TODO resize storage (storage.size += size);
+			resize();
+			storage[nextLastItem] = element;
+			nextLastItem++;
 		}
 	}
 
 	@Override
 	public T dequeue() {
 		T item = null;
-		if (length != 0) {
+		if (length > 0) {
 			int position = nextFirstItem + 1;
 			item = storage[position];
 			storage[position] = null;
@@ -51,7 +65,7 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 				nextFirstItem ++;
 			}
 		} else {
-			//TODO throw exception
+			throw new IllegalStateException();
 		}
 		return item;
 	}
@@ -62,39 +76,85 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		if (nextFirstItem > 0) {
 			nextFirstItem--;
 		} else {
-			//TODO resize storage (need more space at the front)
+			resize();
 		}
 		
 	}
 
 	@Override
 	public T pop() {
-		// TODO Auto-generated method stub
-		return null;
+		T removed = null;
+		if(length > 0){
+			removed = storage[nextLastItem-1];
+			storage[nextLastItem-1] = null;
+			length--;
+			if (length == 0){
+				nextFirstItem = storage.length / 2;
+				nextLastItem = storage.length / 2 + 1;
+			} else {
+				nextLastItem++;
+			}
+		} else{
+			throw new IllegalStateException();
+		}
+		return removed;
 	}
 
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		int position = index + nextFirstItem + 1;
+		if (index >= length || index < 0){
+			throw new IllegalStateException();
+		}
+		return storage[position];
 	}
 
 	@Override
 	public T change(int index, T item) {
-		// TODO Auto-generated method stub
-		return null;
+		int position = index + nextFirstItem + 1;
+		if (index >= length || index < 0){
+			throw new IllegalStateException();
+		}
+		T removed = storage[position];
+		storage[position] = item;
+		return removed;
 	}
 
 	@Override
 	public void insert(int index, T item) {
-		// TODO Auto-generated method stub
-		
+		int position = index + nextFirstItem + 1;
+		if (index >= length || index < 0){
+			throw new IllegalStateException();
+		}
+		for (int i = nextLastItem; i > position; i--){
+			storage[i] = storage[i-1];
+		}
+		if (nextLastItem < storage.length-1){
+			nextLastItem++;
+		} else{
+			resize();
+		}
+		length++;
 	}
 
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		int position = index + nextFirstItem + 1;
+		if (index >= length || index < 0 || length == 0){
+			throw new IllegalStateException();
+		}
+		T removed = storage[position];
+		for (int i = position; i < nextLastItem; i++){
+			storage[i] = storage[i+1];
+		}
+		length--;
+		if (length == 0){
+			nextFirstItem = storage.length / 2;
+			nextLastItem = storage.length / 2 + 1;
+		} else{
+			nextLastItem--;
+		}
+		return removed;
 	}
 
 	@Override

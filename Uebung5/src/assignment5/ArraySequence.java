@@ -6,26 +6,23 @@ import assignment5.adt.*;
 
 public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>, Queue<T> {
 
-	private T[] storage;
+	private Object storage[];
 	private int length;
 	private int nextFirstItem;
 	private int nextLastItem;
 	private static int size = 25;
 
-	@SuppressWarnings("unchecked")
 	public ArraySequence() {
-		storage = (T[]) new Object[size];
+		storage = new Object[size];
 		length = 0;
 		nextFirstItem = storage.length / 2;
 		nextLastItem = storage.length / 2 + 1;
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void resize(){
-		T[] newstorage = (T[]) new Object[storage.length+size];
-		int newNextFirstItem = 12;
+		Object[] newstorage = new Object[storage.length+size];
 		for (int i = 0; i < storage.length; i++){
-			newstorage[i+newNextFirstItem] = storage[i];
+			newstorage[i+12] = storage[i];
 		}
 		nextFirstItem = 11;
 		nextLastItem += 12;
@@ -50,12 +47,13 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T dequeue() {
 		T item = null;
 		if (length > 0) {
 			int position = nextFirstItem + 1;
-			item = storage[position];
+			item = (T) storage[position];
 			storage[position] = null;
 			length--;
 			if (length == 0) { //reset start positions
@@ -81,11 +79,12 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
 		T removed = null;
 		if(length > 0){
-			removed = storage[nextLastItem-1];
+			removed = (T) storage[nextLastItem-1];
 			storage[nextLastItem-1] = null;
 			length--;
 			if (length == 0){
@@ -100,22 +99,24 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		return removed;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
 		int position = index + nextFirstItem + 1;
 		if (index >= length || index < 0){
 			throw new IllegalStateException();
 		}
-		return storage[position];
+		return (T) storage[position];
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T change(int index, T item) {
 		int position = index + nextFirstItem + 1;
 		if (index >= length || index < 0){
 			throw new IllegalStateException();
 		}
-		T removed = storage[position];
+		T removed = (T) storage[position];
 		storage[position] = item;
 		return removed;
 	}
@@ -137,13 +138,14 @@ public class ArraySequence<T extends Comparable<T>> implements List<T>, Stack<T>
 		length++;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T remove(int index) {
 		int position = index + nextFirstItem + 1;
 		if (index >= length || index < 0 || length == 0){
 			throw new IllegalStateException();
 		}
-		T removed = storage[position];
+		T removed = (T) storage[position];
 		for (int i = position; i < nextLastItem; i++){
 			storage[i] = storage[i+1];
 		}

@@ -15,7 +15,7 @@ import assignment6.hashing.HashFunction;
  */
 public class HashMultiMap<K, V> {
 	private final HashFunction<K> hashFunction;
-	private final int size;
+	
 	
 	private class dataContainer{
 		private final int hashKey;
@@ -48,7 +48,7 @@ public class HashMultiMap<K, V> {
 	public HashMultiMap(int tableSize, HashFunction<K> hashFunction) {
 		this.hashFunction = hashFunction;
 		this.hashtable = new ArrayList<dataContainer>(tableSize);
-		this.size = tableSize;
+		
 	}
 	/**
 	 * adds a new "binding" (key-value pair) to the multi-map
@@ -70,12 +70,10 @@ public class HashMultiMap<K, V> {
 		}
 		
 		//add new Container, if this key does not exist
-		if (hashtable.size() < size){
-			dataContainer insert = new dataContainer(key);
-			insert.add(element);
-			hashtable.add(insert);
-		}
-		throw new IllegalArgumentException("The Array is full. Can't be added.");
+		
+		dataContainer insert = new dataContainer(key);
+		insert.add(element);
+		hashtable.add(insert);
 	}
 	/**
 	 * Removes all bindings (key-value pairs) with the specified key from the multi-map
